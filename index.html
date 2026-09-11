@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Crie, personalize e exporte seu currículo profissional diretamente no navegador.">
+  <title>Criador de Currículos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html">Criador de Currículos</a>
+    <div class="topbar-actions">
+      <span class="privacy-note">Sem login. Seus dados ficam neste navegador.</span>
+      <button id="btn-imprimir-topo" class="btn btn-primary" type="button">Exportar PDF</button>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">CURRÍCULO PROFISSIONAL</p>
+        <h1>Monte seu currículo e veja o resultado na hora.</h1>
+        <p>Preencha seus dados, escolha um modelo e personalize a cor. O currículo é criado no próprio navegador e pode ser exportado em PDF.</p>
+      </div>
+      <div class="hero-badge">
+        <strong>6 modelos</strong>
+        <span>3 modelos do projeto original + 3 novos estilos.</span>
+      </div>
+    </section>
+
+    <div class="builder-grid">
+      <section class="editor-panel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">EDITOR</p>
+            <h2>Preencha seu currículo</h2>
+          </div>
+          <span id="save-status" class="save-status">Rascunho local</span>
+        </div>
+
+        <form id="resume-form" autocomplete="on">
+          <section class="form-section">
+            <div class="form-title"><span>01</span><div><h3>Modelo e aparência</h3><p>Escolha um layout. Os modelos mudam de verdade a organização do currículo.</p></div></div>
+            <div class="model-grid">
+              <label class="model-card selected">
+                <input type="radio" name="layout" value="moderno" checked>
+                <span class="model-thumb thumb-modern"><i></i><b></b><em></em></span>
+                <strong>Moderno Lateral</strong>
+                <small>Barra lateral e conteúdo principal.</small>
+              </label>
+              <label class="model-card">
+                <input type="radio" name="layout" value="visual">
+                <span class="model-thumb thumb-visual"><i></i><b></b><em></em></span>
+                <strong>Profissional Visual</strong>
+                <small>Blocos e cartões de leitura rápida.</small>
+              </label>
+              <label class="model-card">
+                <input type="radio" name="layout" value="classico">
+                <span class="model-thumb thumb-classic"><i></i><b></b><em></em></span>
+                <strong>Clássico Executivo</strong>
+                <small>Tradicional, limpo e preto e branco.</small>
+              </label>
+              <label class="model-card">
+                <input type="radio" name="layout" value="minimalista">
+                <span class="model-thumb thumb-minimal"><i></i><b></b><em></em></span>
+                <strong>Minimalista</strong>
+                <small>Leve, espaçado e muito objetivo.</small>
+              </label>
+              <label class="model-card">
+                <input type="radio" name="layout" value="tech">
+                <span class="model-thumb thumb-tech"><i></i><b></b><em></em></span>
+                <strong>Tech</strong>
+                <small>Visual moderno para tecnologia e projetos.</small>
+              </label>
+              <label class="model-card">
+                <input type="radio" name="layout" value="elegante">
+                <span class="model-thumb thumb-elegant"><i></i><b></b><em></em></span>
+                <strong>Elegante</strong>
+                <small>Tipografia refinada e destaque sutil.</small>
+              </label>
+            </div>
+
+            <label class="field-label">Cor principal</label>
+            <div class="color-grid">
+              <label class="color-option"><input type="radio" name="theme" value="azul" checked><span style="--swatch:#2563eb"></span><strong>Azul</strong></label>
+              <label class="color-option"><input type="radio" name="theme" value="verde"><span style="--swatch:#15803d"></span><strong>Verde</strong></label>
+              <label class="color-option"><input type="radio" name="theme" value="vinho"><span style="--swatch:#9f1239"></span><strong>Vinho</strong></label>
+              <label class="color-option"><input type="radio" name="theme" value="grafite"><span style="--swatch:#334155"></span><strong>Grafite</strong></label>
+              <label class="color-option"><input type="radio" name="theme" value="roxo"><span style="--swatch:#7c3aed"></span><strong>Roxo</strong></label>
+              <label class="color-option"><input type="radio" name="theme" value="petroleo"><span style="--swatch:#0f766e"></span><strong>Petróleo</strong></label>
+              <label class="color-option"><input type="radio" name="theme" value="terracota"><span style="--swatch:#b45309"></span><strong>Terracota</strong></label>
+              <label class="color-option"><input type="radio" name="theme" value="dourado"><span style="--swatch:#a16207"></span><strong>Dourado</strong></label>
+            </div>
+          </section>
+
+          <section class="form-section">
+            <div class="form-title"><span>02</span><div><h3>Foto profissional</h3><p>Opcional. Prefira uma foto com boa iluminação e fundo neutro.</p></div></div>
+            <div class="photo-row">
+              <div class="photo-preview"><img id="photo-preview" alt="Prévia da foto"><span id="photo-placeholder">Sem foto</span></div>
+              <div class="photo-actions">
+                <label class="btn btn-secondary" for="photo-input">Escolher foto</label>
+                <input id="photo-input" type="file" accept="image/*" hidden>
+                <button id="remove-photo" class="btn btn-ghost" type="button">Remover</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="form-section">
+            <div class="form-title"><span>03</span><div><h3>Dados pessoais e contato</h3><p>Informe apenas dados úteis para o processo seletivo.</p></div></div>
+            <div class="form-grid two">
+              <label>Nome completo<input id="nome" type="text" placeholder="Seu nome" required></label>
+              <label>Área ou cargo desejado<input id="cargo" type="text" placeholder="Ex.: Suporte de TI"></label>
+              <label>E-mail<input id="email" type="email" placeholder="voce@email.com"></label>
+              <label>Telefone<input id="telefone" type="text" placeholder="(11) 99999-9999"></label>
+              <label>Cidade / Estado<input id="cidade" type="text" placeholder="São Paulo - SP"></label>
+              <label>LinkedIn<input id="linkedin" type="text" placeholder="linkedin.com/in/seunome"></label>
+              <label class="full">GitHub / Portfólio<input id="portfolio" type="text" placeholder="github.com/seunome ou seuportfolio.com"></label>
+            </div>
+          </section>
+
+          <section class="form-section">
+            <div class="form-title"><span>04</span><div><h3>Apresentação profissional</h3><p>Deixe claro o que você busca e quais são seus principais pontos fortes.</p></div></div>
+            <div class="form-grid">
+              <label>Objetivo profissional<textarea id="objetivo" rows="3" placeholder="Ex.: Busco uma oportunidade na área de suporte de TI..."></textarea></label>
+              <label>Resumo profissional<textarea id="resumo" rows="4" placeholder="Fale brevemente sobre seu perfil, conhecimentos e interesses."></textarea></label>
+            </div>
+          </section>
+
+          <section class="form-section repeater-section">
+            <div class="form-title row-title"><div class="title-group"><span>05</span><div><h3>Formação acadêmica</h3><p>Inclua curso, instituição e período.</p></div></div><button class="btn btn-secondary btn-small add-item" data-section="formacoes" type="button">+ Adicionar</button></div>
+            <div id="formacoes" class="repeat-list"></div>
+          </section>
+
+          <section class="form-section repeater-section">
+            <div class="form-title row-title"><div class="title-group"><span>06</span><div><h3>Experiências</h3><p>Empregos, estágios, freelas ou experiências relevantes.</p></div></div><button class="btn btn-secondary btn-small add-item" data-section="experiencias" type="button">+ Adicionar</button></div>
+            <div id="experiencias" class="repeat-list"></div>
+          </section>
+
+          <section class="form-section repeater-section">
+            <div class="form-title row-title"><div class="title-group"><span>07</span><div><h3>Cursos e certificações</h3><p>Adicione cursos livres, certificados e capacitações.</p></div></div><button class="btn btn-secondary btn-small add-item" data-section="cursos" type="button">+ Adicionar</button></div>
+            <div id="cursos" class="repeat-list"></div>
+          </section>
+
+          <section class="form-section repeater-section">
+            <div class="form-title row-title"><div class="title-group"><span>08</span><div><h3>Habilidades técnicas</h3><p>Ferramentas, tecnologias e conhecimentos práticos.</p></div></div><button class="btn btn-secondary btn-small add-item" data-section="habilidades" type="button">+ Adicionar</button></div>
+            <div id="habilidades" class="repeat-list"></div>
+          </section>
+
+          <section class="form-section repeater-section">
+            <div class="form-title row-title"><div class="title-group"><span>09</span><div><h3>Competências profissionais</h3><p>Ex.: comunicação, organização e trabalho em equipe.</p></div></div><button class="btn btn-secondary btn-small add-item" data-section="competencias" type="button">+ Adicionar</button></div>
+            <div id="competencias" class="repeat-list"></div>
+          </section>
+
+          <section class="form-section repeater-section">
+            <div class="form-title row-title"><div class="title-group"><span>10</span><div><h3>Idiomas</h3><p>Informe idioma e nível.</p></div></div><button class="btn btn-secondary btn-small add-item" data-section="idiomas" type="button">+ Adicionar</button></div>
+            <div id="idiomas" class="repeat-list"></div>
+          </section>
+
+          <section class="form-section repeater-section">
+            <div class="form-title row-title"><div class="title-group"><span>11</span><div><h3>Projetos e atividades</h3><p>Ótimo para quem ainda tem pouca experiência profissional.</p></div></div><button class="btn btn-secondary btn-small add-item" data-section="projetos" type="button">+ Adicionar</button></div>
+            <div id="projetos" class="repeat-list"></div>
+          </section>
+
+          <div class="editor-actions">
+            <button id="clear-form" class="btn btn-danger" type="button">Limpar tudo</button>
+            <button id="save-draft" class="btn btn-secondary" type="button">Salvar rascunho</button>
+            <button id="preview-mobile" class="btn btn-secondary mobile-only" type="button">Ver currículo</button>
+            <button class="btn btn-primary" type="submit">Exportar PDF</button>
+          </div>
+        </form>
+      </section>
+
+      <aside class="preview-panel" id="preview-panel">
+        <div class="preview-head">
+          <div><p class="eyebrow">PRÉ-VISUALIZAÇÃO</p><h2>Seu currículo</h2></div>
+          <button id="btn-imprimir" class="btn btn-primary" type="button">Exportar PDF</button>
+        </div>
+        <div class="paper-wrap">
+          <article id="resume-sheet" class="resume-sheet layout-moderno" aria-label="Pré-visualização do currículo"></article>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <button id="close-mobile-preview" class="mobile-preview-close" type="button" aria-label="Fechar visualização">Fechar visualização</button>
+  <script src="script.js"></script>
+</body>
+</html>
